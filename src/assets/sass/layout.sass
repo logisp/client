@@ -1,0 +1,94 @@
+html
+  overflow-x: auto
+
+.app-level-container
+  min-height: 4rem
+  z-index: 10000
+  background-color: $white
+  box-shadow: 0 3px 3px rgba(0,0,0,0.1)
+  .level
+    height: 4rem
+
+.app-logo
+  cursor: pointer
+
+.app-body
+  margin-top: 1rem
+  padding: 1rem 0 1rem 0
+
+.app-container
+  padding: 0 1.5rem 0 1.5rem
+
+.app-errors
+  top: 4rem
+  left: 0
+  width: 100vw
+  z-index: 10000
+  height: 4rem
+  position: fixed
+  box-shadow: 0 3px 3px rgba(0,0,0,0.1)
+  color: $white
+  background: #ff7a90
+  display: flex
+  align-items: center
+
+.app-notifications
+  display: fixed
+  top: 0
+  left: 0
+  z-index: 10001
+  border-bottom: 1px solid $border
+  .box
+    padding: 1rem
+    z-index: -10000
+    width: 100vw
+    border-radius: 0
+    border-bottom: none
+    margin-bottom: 0
+    @each $name, $pair in $colors
+      $color: nth($pair, 1)
+      $color-invert: nth($pair, 2)
+      $color-lightning: max((100% - lightness($color)) - 2%, 0%)
+      $color-luminance: colorLuminance($color)
+      $darken-percentage: $color-luminance * 70%
+      $desaturate-percentage: $color-luminance * 30%
+      &.is-#{$name}
+        background-color: lighten($color, $color-lightning)
+        .message-header
+          background-color: $color
+          color: $color-invert
+        .message-body
+          border-color: $color
+          color: desaturate(darken($color, $darken-percentage), $desaturate-percentage)
+
+.login-dialog
+  box-shadow: $box-shadow
+  border-radius: 6px
+  background: #fff
+  width: 320px
+  top: 30%
+  left: calc(50% - 160px)
+  position: fixed
+
+.login-dialog-header
+  padding: 1rem 0 1rem 0
+  border-bottom: $border solid 1px
+  text-align: center
+
+.login-dialog-body
+  padding: 1rem 1.25rem 1.5rem 1.25rem
+
+.is-flex
+  display: flex
+
+.is-flex-auto
+  flex: 2
+
+.is-flex-row
+  flex-flow: row
+
+.is-flex-column
+  flex-flow: column
+
+.user-home-block
+  background: $background
